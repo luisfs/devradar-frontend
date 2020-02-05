@@ -54,8 +54,6 @@ function App() {
 
     setGithub_username('');
     setTechs('');
-    setLatitude('');
-    setLongitude('');
     
   }
 
