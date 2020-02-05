@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import api from './services/api';
 
 import './Global.css'
 import './App.css'
@@ -18,6 +19,7 @@ function App() {
   const [ longitude, setLongitude] = useState('');
   const [ github_username, setGithub_username] = useState('');
   const [ techs, setTechs] = useState('');
+  
   
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -38,7 +40,23 @@ function App() {
   }, []);
 
   async function handleAddDev(e){
+    console.log('value: ',e)
     e.preventDefault();
+
+    // const response = await api.get('/devs')
+
+    const response  = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude,
+    })
+
+    setGithub_username('');
+    setTechs('');
+    setLatitude('');
+    setLongitude('');
+    
   }
 
   return (
